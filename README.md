@@ -22,6 +22,8 @@ Create an issue with
 itsi create "Issue subject"
 ```
 
+It will automatically ask you which project you want to create an issue in.
+
 Start to work on an issue with
 
 ```shell
