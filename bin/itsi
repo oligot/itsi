@@ -1,0 +1,42 @@
+#!/usr/bin/env node
+
+var program = require('commander');
+var itsi = require('..');
+var package = require('../package');
+
+function exit(err) {
+  if (err) {
+    console.error(err.message);
+    process.exit(1);
+  } else {
+    process.exit();
+  }
+}
+
+program
+  .version(package.version);
+
+program
+  .command('create <subject>')
+  .description('create a new issue')
+  .action(function(subject){
+    itsi.create(subject, exit);
+  });
+
+program
+  .command('work')
+  .description('start to work on an issue')
+  .action(function(subject){
+    itsi.work(exit);
+  });
+
+program
+  .command('done')
+  .description('commit the work done on an issue')
+  .action(function(subject){
+    itsi.done(exit);
+  });
+
+itsi.bootstrap(function() {
+  program.parse(process.argv);
+});
